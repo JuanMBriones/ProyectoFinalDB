@@ -205,11 +205,154 @@ namespace ProyectoFinalDBConsole
             Console.WriteLine("1.Create new professor. (nomina, nombre, apellido)");
             Console.WriteLine("2.Create new meeting. (fecha, nomina)");
             Console.WriteLine("3.Create new auto diagnosis. (nomina, rubro1, rubro2, rubro3, rubro4, rubro5, rubro6)");
-            Console.WriteLine("4.InsertaComentario(nombre, apellido, comentario)");
-            Console.WriteLine("5. Create a new teacher and auto diagnosis at the same time. (nomina, nombre, apellido, rubro1, rubro2, rubro3, rubro4, rubro5, rubro6)");
-            Console.WriteLine("6. Create new auto diagnosis using name instead of nomina. (nombre, apellido, rubro1, rubro2, rubro3, rubro4, rubro5, rubro6)");
-            Console.WriteLine("7. Create a new teacher and a new meeting. (nombre, apellido, nomina, fecha)");
+            Console.WriteLine("4.InsertaComentario(nombre, apellido, comentario) ** Se le inserta a todas las juntas del profesor");
+            Console.WriteLine("5.InsertaComentario(nombre, apellido, fecha, comentario) ** Se le inserta unicamente a la junta en ese dia");
+            Console.WriteLine("6. Create a new teacher and auto diagnosis at the same time. (nomina, nombre, apellido, rubro1, rubro2, rubro3, rubro4, rubro5, rubro6)");
+            Console.WriteLine("7. Create new auto diagnosis using name instead of nomina. (nombre, apellido, rubro1, rubro2, rubro3, rubro4, rubro5, rubro6)");
+            Console.WriteLine("8. Create a new teacher and a new meeting. (nombre, apellido, nomina, fecha)");
             Console.WriteLine("0. EXIT");
+
+            int option = 0;
+            do
+            {
+                Console.Write("Your option: ");
+                option = Convert.ToInt32(Console.ReadLine());
+
+            } while (!(option >= 0 && option <= 8));
+
+            int nomina;
+            DateTime inputtedDate;
+            string nombre, apellido, comentario;
+            float r1, r2, r3, r4, r5, r6;
+            String[] strArgs;
+            Object[] objArgs;
+            Console.Clear();
+            switch (option)
+            {
+                case 0:
+                    Environment.Exit(0);
+                    break;
+                case 1: //"1.Create new professor. (nomina, nombre, apellido)"
+                    Console.Write("Write the ID: ");
+                    nomina = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the First Name: ");
+                    nombre = (Console.ReadLine());
+                    Console.Write("Write the Last Name: ");
+                    apellido = (Console.ReadLine());
+                    strArgs = new string[] { "@nomina", "@nombre", "@apellido" };
+                    objArgs = new object[] { nomina, nombre, apellido };
+                    SqlConnector.tablaArgs("insertIntoMaestros", strArgs, objArgs, 2);
+                    break;
+                case 2://"2.Create new meeting. (fecha, nomina)");
+                    Console.Write("Write the date: ");
+                    inputtedDate = DateTime.Parse(Console.ReadLine());
+                    Console.Write("Write the ID: ");
+                    nomina = Convert.ToInt32(Console.ReadLine());
+                    strArgs = new string[] { "@fecha", "@nomina" };
+                    objArgs = new object[] { inputtedDate, nomina };
+                    SqlConnector.tablaArgs("insertIntoMeetings", strArgs, objArgs, 2);
+                    break;
+                case 3://"3.Create new auto diagnosis. (nomina, rubro1, rubro2, rubro3, rubro4, rubro5, rubro6)");
+                    Console.Write("Write the ID: ");
+                    nomina = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 1: ");
+                    r1 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 2: ");
+                    r2 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 3: ");
+                    r3 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 4: ");
+                    r4 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 5: ");
+                    r5 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 6: ");
+                    r6 = Convert.ToInt32(Console.ReadLine());
+                    strArgs = new string[] { "@nomina", "@r1", "@r2", "@r3", "@r4", "@r5", "@r6" };
+                    objArgs = new object[] { nomina, r1, r2, r3, r4, r5, r6 };
+                    SqlConnector.tablaArgs("insertIntoAutoDiagnostico", strArgs, objArgs, 2);
+                    break;
+                case 4://"4.InsertaComentario(nombre, apellido, comentario)");
+                    Console.Write("Write the First Name: ");
+                    nombre = (Console.ReadLine());
+                    Console.Write("Write the Last Name: ");
+                    apellido = (Console.ReadLine());
+                    Console.Write("Write the Comment: ");
+                    comentario = (Console.ReadLine());
+                    strArgs = new string[] { "@nombre", "@apellido", "@comentario" };
+                    objArgs = new object[] { nombre, apellido, comentario };
+                    SqlConnector.tablaArgs("InsertarComentario", strArgs, objArgs, 2);
+                    break;
+                case 5: // Console.WriteLine("5.InsertaComentario(nombre, apellido, fecha, comentario) ** Se le inserta unicamente a la junta en ese dia");
+                    Console.Write("Write the First Name: ");
+                    nombre = (Console.ReadLine());
+                    Console.Write("Write the Last Name: ");
+                    apellido = (Console.ReadLine());
+                    Console.Write("Write the Date: ");
+                    inputtedDate = DateTime.Parse(Console.ReadLine());
+                    Console.Write("Write the Comment: ");
+                    comentario = (Console.ReadLine());
+                    strArgs = new string[] { "@nombre", "@apellido", "@fecha", "@comentario" };
+                    objArgs = new object[] { nombre, apellido, inputtedDate, comentario };
+                    SqlConnector.tablaArgs("InsertarComentario_2", strArgs, objArgs, 2);
+                    break;
+                case 6://"5. Create a new teacher and auto diagnosis at the same time. (nomina, nombre, apellido, rubro1, rubro2, rubro3, rubro4, rubro5, rubro6)");
+                    Console.Write("Write the ID: ");
+                    nomina = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the First Name: ");
+                    nombre = (Console.ReadLine());
+                    Console.Write("Write the First Name: ");
+                    apellido = (Console.ReadLine());
+                    Console.Write("Write the rubro 1: ");
+                    r1 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 2: ");
+                    r2 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 3: ");
+                    r3 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 4: ");
+                    r4 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 5: ");
+                    r5 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 6: ");
+                    r6 = Convert.ToInt32(Console.ReadLine());
+                    strArgs = new string[] { "@nomina", "@nombre", "@apellido", "@r1", "@r2", "@r3", "@r4", "@r5", "@r6" };
+                    objArgs = new object[] { nomina, nombre, apellido, r1, r2, r3, r4, r5, r6 };
+                    SqlConnector.tablaArgs("addNewTeacherAndRubrosAtThatMoment", strArgs, objArgs, 2);
+                    break;
+                case 7: //"6. Create new auto diagnosis using name instead of nomina. (nombre, apellido, rubro1, rubro2, rubro3, rubro4, rubro5, rubro6)
+                    Console.Write("Write the First Name: ");
+                    nombre = (Console.ReadLine());
+                    Console.Write("Write the First Name: ");
+                    apellido = (Console.ReadLine());
+                    Console.Write("Write the rubro 1: ");
+                    r1 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 2: ");
+                    r2 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 3: ");
+                    r3 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 4: ");
+                    r4 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 5: ");
+                    r5 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 6: ");
+                    r6 = Convert.ToInt32(Console.ReadLine());
+                    strArgs = new string[] { "@nombre", "@apellido", "@r1", "@r2", "@r3", "@r4", "@r5", "@r6" };
+                    objArgs = new object[] { nombre, apellido, r1, r2, r3, r4, r5, r6 };
+                    SqlConnector.tablaArgs("addRubrosByName", strArgs, objArgs, 2);
+                    break;
+                case 8: //"8. Create a new teacher and a new meeting. (nombre, apellido, nomina, fecha)");
+                    Console.Write("Write the First Name: ");
+                    nombre = (Console.ReadLine());
+                    Console.Write("Write the Last Name: ");
+                    apellido = (Console.ReadLine());
+                    Console.Write("Write the ID: ");
+                    nomina = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the date: ");
+                    inputtedDate = DateTime.Parse(Console.ReadLine());
+                    strArgs = new string[] { "@nombre", "@apellido", "@nomina", "@fecha" };
+                    objArgs = new object[] { nombre, apellido, nomina, inputtedDate };
+                    SqlConnector.tablaArgs("enrollATeacherAndScheduleMeeting", strArgs, objArgs, 2);
+                    break;
+            }
         }
 
         public static void showDelete()
@@ -294,6 +437,86 @@ namespace ProyectoFinalDBConsole
             Console.WriteLine("3.Update Meeting. (meetingId, fecha, nomina, comentario, asistencia)");
             Console.WriteLine("4.ActualizaRubro(columna, nomina, nueva calif)");
             Console.WriteLine("0. EXIT");
+
+            int option = 0;
+            do
+            {
+                Console.Write("Your option: ");
+                option = Convert.ToInt32(Console.ReadLine());
+
+            } while (!(option >= 0 && option <= 4));
+
+            int nomina, meetingID, columna;
+            DateTime inputtedDate;
+            string nombre, apellido, comentario;
+            float r1, r2, r3, r4, r5, r6, nuevoRubro;
+            String[] strArgs;
+            Object[] objArgs;
+            bool assistance;
+            Console.Clear();
+            switch (option)
+            {
+                case 0:
+                    Environment.Exit(0);
+                    break;
+                case 1: //"1.Update Auto Diagnosis. (nomina, rubro1, rubro2, rubro3, rubro4, rubro5, rubro6)"
+                    Console.Write("Write the ID: ");
+                    nomina = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 1: ");
+                    r1 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 2: ");
+                    r2 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 3: ");
+                    r3 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 4: ");
+                    r4 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 5: ");
+                    r5 = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the rubro 6: ");
+                    r6 = Convert.ToInt32(Console.ReadLine());
+                    strArgs = new string[] { "@nomina", "@r1", "@r2", "@r3", "@r4", "@r5", "@r6" };
+                    objArgs = new object[] { nomina, r1, r2, r3, r4, r5, r6 };
+                    SqlConnector.tablaArgs("modify_autodiagnostico", strArgs, objArgs, 2);
+                    break;
+                case 2: //"2 .Update Professor. (nomina, nombre, apellido)");
+                    Console.Write("Write the ID: ");
+                    nomina = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the First Name: ");
+                    nombre = (Console.ReadLine());
+                    Console.Write("Write the First Name: ");
+                    apellido = (Console.ReadLine());
+                    Console.Write("Write the rubro 1: ");
+                    strArgs = new string[] { "@nomina", "@nombre", "@apellido" };
+                    objArgs = new object[] { nomina, nombre, apellido };
+                    SqlConnector.tablaArgs("modify_maestros", strArgs, objArgs, 2);
+                    break;
+                case 3: //3.Update Meeting. (meetingId, fecha, nomina, comentario, asistencia)");
+                    Console.Write("Write the Meeting ID: ");
+                    meetingID = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the Date: ");
+                    inputtedDate = DateTime.Parse(Console.ReadLine());
+                    Console.Write("Write the ID: ");
+                    nomina = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the Comment: ");
+                    comentario = (Console.ReadLine());
+                    Console.Write("Write the Assistance: ");
+                    assistance = Boolean.Parse(Console.ReadLine());
+                    strArgs = new string[] { "@meetingId", "@fecha", "@nomina", "@comentario", "@asistencia" };
+                    objArgs = new object[] { meetingID, inputtedDate, nomina, comentario, assistance };
+                    SqlConnector.tablaArgs("modify_meetings", strArgs, objArgs, 2);
+                    break;
+                case 4: //4.ActualizaRubro(columna, nomina, nueva calif)");
+                    Console.Write("Write the Column to be modify: ");
+                    columna = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the ID: ");
+                    nomina = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Write the new grade: ");
+                    nuevoRubro = Convert.ToInt32(Console.ReadLine());
+                    strArgs = new string[] { "@columna", "@nomina", "@nuevaCalif" };
+                    objArgs = new object[] { columna, nomina, nuevoRubro };
+                    SqlConnector.tablaArgs("ActualizaRubro", strArgs, objArgs, 2);
+                    break;
+            }
         }
 
     }
