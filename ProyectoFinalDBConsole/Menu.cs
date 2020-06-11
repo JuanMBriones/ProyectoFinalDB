@@ -82,6 +82,77 @@ namespace ProyectoFinalDBConsole
             Console.WriteLine("5.Reporte(Rango1fecha, rango2fecha)");
             Console.WriteLine("6.Check meetings by professor name. (nombre, apellido, fecha)");
             Console.WriteLine("0. EXIT");
+
+            int option = 0;
+            do
+            {
+                Console.Write("Your option: ");
+                option = Convert.ToInt32(Console.ReadLine());
+
+            } while (!(option >= 0 && option <= 10));
+
+            Console.Clear();
+
+            string nombre, apellido;
+            DateTime inputtedDate;
+            switch (option)
+            {
+                case 0:
+                    Environment.Exit(0);
+                    Console.WriteLine("1.RegresaR(rango1, rango2)");
+                    Console.WriteLine("2.RegresaN(nombre, apellido)");
+                    Console.WriteLine("3.RegresaN2(nombrem apellido, fecha)");
+                    Console.WriteLine("4.RegresaAgendaHoy(dias)");
+                    Console.WriteLine("5.Reporte(Rango1fecha, rango2fecha)");
+                    Console.WriteLine("6.Check meetings by professor name. (nombre, apellido, fecha)");
+                    break;
+                case 1:
+                    Console.Write("Rango1: ");
+                    float rango1 = float.Parse(Console.ReadLine());
+                    Console.Write("Rango2: ");
+                    float rango2 = float.Parse(Console.ReadLine());
+                    showAlls.viewAutodiagnostico("RegresaR("+rango1+","+rango2+")");
+                    break;
+                case 2:
+                    Console.Write("nombre: ");
+                    nombre = Console.ReadLine();
+                    Console.Write("apellido: ");
+                    apellido = Console.ReadLine();
+                    showAlls.viewAutodiagnostico("RegresaN(" + nombre + "," + apellido + ")");
+                    break;
+                case 3:
+                    Console.Write("nombre: ");
+                    nombre = Console.ReadLine();
+                    Console.Write("apellido: ");
+                    apellido = Console.ReadLine();
+                    Console.Write("Fecha: ");
+                    inputtedDate = DateTime.Parse(Console.ReadLine());
+                    showAlls.viewAutodiagnostico("RegresaN(\'" + nombre + "\',\'" + apellido + "\',\'" + inputtedDate + "\')");
+                    break;
+                case 4:
+                    Console.Write("Dias: ");
+                    int dias = Convert.ToInt32(Console.ReadLine());
+                    showAlls.viewAutodiagnostico("RegresaAgendaHoy(" + dias.ToString() + ")");
+                    break;
+                case 5:
+                    Console.Write("Fecha1: ");
+                    DateTime fecha1 = DateTime.Parse(Console.ReadLine());
+                    Console.Write("Fecha2: ");
+                    DateTime fecha2 = DateTime.Parse(Console.ReadLine());
+
+                    showAlls.viewAutodiagnostico("Reporte(" + fecha1 + "," + fecha2 +")");
+                    
+                    break;
+                case 6:
+                    Console.Write("nombre: ");
+                    nombre = Console.ReadLine();
+                    Console.Write("apellido: ");
+                    apellido = Console.ReadLine();
+                    Console.Write("Fecha: ");
+                    inputtedDate = DateTime.Parse(Console.ReadLine());
+                    showAlls.viewAutodiagnostico("RegresaN(" + nombre + "," + apellido + "," + inputtedDate + ")");
+                    break;
+            }
         }
 
         public static void showCreate()
