@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace ProyectoFinalDBConsole
@@ -11,7 +12,9 @@ namespace ProyectoFinalDBConsole
         
         static void Main(string[] args)
         {
-            
+
+            SqlConnector.tablaArgs("t_maestros", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+            /*
             Console.WriteLine("Hello. Welcome to your agenda with professors.\nWhen you are sure of the service you desire to achieve press the number before the sentence.");
             Console.WriteLine("1.Show all registers");
             Console.WriteLine("2.Get registers");
@@ -48,7 +51,7 @@ namespace ProyectoFinalDBConsole
                 case 5:
                     Menu.showDelete();
                     break;
-            } 
+            } */
         }
     }
 }

@@ -52,5 +52,55 @@ namespace ProyectoFinalDBConsole
             }
             Console.ReadKey();*/
         }
+
+
+        public static void tablaArgs(String table, String[] args, Object[] argsValue)
+        {
+            SqlConnection conn = sqlCon;
+            String query = "SELECT * FROM " + table;
+
+             
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (i == 0)
+                {
+                    query += "(@" + args[i] + ", ";
+                }
+                else
+                {
+                    if (i == (args.Length - 1))
+                    {
+                        query += "@" + args[i] + ")";
+                    }
+                    else
+                    {
+                        query += "@" + args[i] + ", ";
+                    }
+                }
+            }
+            SqlCommand cmd = new SqlCommand(query, conn);
+            // cmd.CommandType=CommandType.StoredProcedure;  
+
+            for (int i = 0; i < args.Length && args!=null; i++)
+            {
+                cmd.Parameters.AddWithValue("@"+args[i], argsValue[i]);
+            }
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+           // string str = dt.Rows[0][0].ToString();
+           for(int i=0; i<dt.Rows.Count; i++)
+            {
+                for(int j=0; j<dt.Columns.Count; j++)
+                {
+                    Console.Write(dt.Rows[i][j].ToString() + " ");
+                }
+                Console.WriteLine();
+            }
+            //Console.WriteLine(str);
+            //Response.Write(str.ToString());
+        }
     }
 }
