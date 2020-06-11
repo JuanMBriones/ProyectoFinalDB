@@ -44,47 +44,47 @@ namespace ProyectoFinalDBConsole
                     Environment.Exit(0);
                     break;
                 case 1:
-                    SqlConnector.tablaArgs("view_autodiagnostico", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+                    SqlConnector.tablaArgs("view_autodiagnostico", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray(), 1);
                     break;
                 case 2:
-                    SqlConnector.tablaArgs("view_maestros", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+                    SqlConnector.tablaArgs("view_maestros", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray(), 1);
                     break;
                 case 3:
-                    SqlConnector.tablaArgs("view_meetingsComingUp", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+                    SqlConnector.tablaArgs("view_meetingsComingUp", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray(), 1);
                     break;
                 case 4:
-                    SqlConnector.tablaArgs("view_meetingsDatesAndNames", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+                    SqlConnector.tablaArgs("view_meetingsDatesAndNames", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray(), 1);
                     break;
                 case 5:
-                    SqlConnector.tablaArgs("view_meetingsDatesAndNamesUpComing", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+                    SqlConnector.tablaArgs("view_meetingsDatesAndNamesUpComing", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray(), 1);
                    
                     break;
                 case 6:
-                    SqlConnector.tablaArgs("view_meetingsPassed", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+                    SqlConnector.tablaArgs("view_meetingsPassed", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray(), 1);
                                 
                     break;
                 case 7:
-                    SqlConnector.tablaArgs("view_nextMeetingWithAverage", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+                    SqlConnector.tablaArgs("view_nextMeetingWithAverage", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray(), 1);
                     
                     break;
                 case 8:
                     Console.Write("Write the ID: ");
                     int nomina = Convert.ToInt32(Console.ReadLine());
-                    String[] strArgs = { "@nomina" };
+                    String[] strArgs = { "nomina" };
 
                     Object[] objArgs = { nomina };
-                    SqlConnector.tablaArgs("fnTeachersAgendaAndInfo", strArgs, objArgs);
+                    SqlConnector.tablaArgs("fnTeachersAgendaAndInfo", strArgs, objArgs, 1);
                     
                     break;
                 case 9:
                     Console.Write("Write the ID: ");
                     float avg = float.Parse(Console.ReadLine());
-                    String[] strArgs2 = { "@nomina" };
+                    String[] strArgs2 = { "nomina" };
                     Object[] objArgs2 = { avg };
-                    SqlConnector.tablaArgs("fnTeachersAgendaAndInfo", strArgs2, objArgs2);
+                    SqlConnector.tablaArgs("fnTeachersAgendaAndInfo", strArgs2, objArgs2, 1);
                     break;
                 case 10:
-                    SqlConnector.tablaArgs("fnTeachersWithNoMeetings", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+                    SqlConnector.tablaArgs("fnTeachersWithNoMeetings", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray(), 1);
                     
                     break;
             }
@@ -130,9 +130,9 @@ namespace ProyectoFinalDBConsole
                     Console.Write("Rango2: ");
                     float rango2 = float.Parse(Console.ReadLine());
                     
-                    String[] strArgs = { "@rango1", "@rango2" };
+                    String[] strArgs = { "rango1", "rango2" };
                     Object[] objArgs = { rango1, rango2 };
-                    SqlConnector.tablaArgs("RegresaR", strArgs, objArgs);
+                    SqlConnector.tablaArgs("RegresaR", strArgs, objArgs, 1);
                     break;
                 case 2:
                     Console.Write("nombre: ");
@@ -140,9 +140,9 @@ namespace ProyectoFinalDBConsole
                     Console.Write("apellido: ");
                     apellido = Console.ReadLine();
 
-                    String[] strArgs2 = { "@nombre", "@apellido" };
+                    String[] strArgs2 = { "nombre", "apellido" };
                     Object[] objArgs2 = { nombre, apellido };
-                    SqlConnector.tablaArgs("RegresaN", strArgs2, objArgs2);
+                    SqlConnector.tablaArgs("RegresaN", strArgs2, objArgs2, 2);
                     //showAlls.viewAutodiagnostico("RegresaN(" + nombre + "," + apellido + ")");
                     break;
                 case 3:
@@ -153,9 +153,9 @@ namespace ProyectoFinalDBConsole
                     Console.Write("Fecha: ");
                     inputtedDate = DateTime.Parse(Console.ReadLine());
 
-                    String[] strArgs3 = { "@nombre", "@apellido", "fecha" };
+                    String[] strArgs3 = { "nombre", "apellido", "fecha" };
                     Object[] objArgs3 = { nombre, apellido, inputtedDate };
-                    SqlConnector.tablaArgs("RegresaN2", strArgs3, objArgs3);
+                    SqlConnector.tablaArgs("RegresaN2", strArgs3, objArgs3, 2);
 
                     //showAlls.viewAutodiagnostico("RegresaN(\'" + nombre + "\',\'" + apellido + "\',\'" + inputtedDate + "\')");
                     break;
@@ -163,9 +163,9 @@ namespace ProyectoFinalDBConsole
                     Console.Write("Dias: ");
                     int dias = Convert.ToInt32(Console.ReadLine());
 
-                    String[] strArgs4 = { "@DaysPassed" };
+                    String[] strArgs4 = { " DaysPassed" };
                     Object[] objArgs4 = { dias };
-                    SqlConnector.tablaArgs("RegresaAgendaHoy", strArgs4, objArgs4);
+                    SqlConnector.tablaArgs("RegresaAgendaHoy", strArgs4, objArgs4, 2);
                     //showAlls.viewAutodiagnostico("RegresaAgendaHoy(" + dias.ToString() + ")");
                     break;
                 case 5:
@@ -177,7 +177,7 @@ namespace ProyectoFinalDBConsole
 
                     String[] strArgs5 = { "fecha1", "fecha2" };
                     Object[] objArgs5 = { fecha1, fecha2 };
-                    SqlConnector.tablaArgs("Reporte", strArgs5, objArgs5);
+                    SqlConnector.tablaArgs("Reporte", strArgs5, objArgs5, 2);
                     //showAlls.viewAutodiagnostico("Reporte(" + fecha1 + "," + fecha2 +")");
 
                     break;
@@ -191,9 +191,9 @@ namespace ProyectoFinalDBConsole
 
 
 
-                    String[] strArgs6 = { "@nombre", "@apellido", "fecha" };
+                    String[] strArgs6 = { "nombre", "apellido", "fecha" };
                     Object[] objArgs6 = { nombre, apellido, inputtedDate };
-                    SqlConnector.tablaArgs("RegresaN2", strArgs6, objArgs6);
+                    SqlConnector.tablaArgs("RegresaN2", strArgs6, objArgs6, 2);
                     //showAlls.viewAutodiagnostico("RegresaN(" + nombre + "," + apellido + "," + inputtedDate + ")");
                     break;
             }
@@ -220,6 +220,70 @@ namespace ProyectoFinalDBConsole
             Console.WriteLine("3. Delete Meeting. (nomina, date)");
             Console.WriteLine("4.BorraComentario(nomina, fecha)");
             Console.WriteLine("0. EXIT");
+
+
+
+            int option = 0;
+            do
+            {
+                Console.Write("Your option: ");
+                option = Convert.ToInt32(Console.ReadLine());
+
+            } while (!(option >= 0 && option <= 10));
+
+            Console.Clear();
+
+            string nombre, apellido;
+            DateTime inputtedDate;
+            switch (option)
+            {
+                case 0:
+                    Environment.Exit(0);
+                    break;
+                case 1:
+                    Console.Write("Write the ID: ");
+                    int nomina = Convert.ToInt32(Console.ReadLine());
+                    String[] strArgs = { "nomina" };
+
+                    Object[] objArgs = { nomina };
+                    SqlConnector.tablaArgs("deleteAutoDiagnostico", strArgs, objArgs, 2);
+                    break;
+                case 2:
+                    Console.Write("nombre: ");
+                    nombre = Console.ReadLine();
+                    Console.Write("apellido: ");
+                    apellido = Console.ReadLine();
+
+                    String[] strArgs2 = { "nombre", "apellido" };
+                    Object[] objArgs2 = { nombre, apellido };
+                    SqlConnector.tablaArgs("RegresaN", strArgs2, objArgs2, 2);
+                    //showAlls.viewAutodiagnostico("RegresaN(" + nombre + "," + apellido + ")");
+                    break;
+                case 3:
+                    Console.Write("nombre: ");
+                    nombre = Console.ReadLine();
+                    Console.Write("apellido: ");
+                    apellido = Console.ReadLine();
+                    Console.Write("Fecha: ");
+                    inputtedDate = DateTime.Parse(Console.ReadLine());
+
+                    String[] strArgs3 = { "nombre", "apellido", "fecha" };
+                    Object[] objArgs3 = { nombre, apellido, inputtedDate };
+                    SqlConnector.tablaArgs("RegresaN2", strArgs3, objArgs3, 2);
+
+                    //showAlls.viewAutodiagnostico("RegresaN(\'" + nombre + "\',\'" + apellido + "\',\'" + inputtedDate + "\')");
+                    break;
+                case 4:
+                    Console.Write("Dias: ");
+                    int dias = Convert.ToInt32(Console.ReadLine());
+
+                    String[] strArgs4 = { " DaysPassed" };
+                    Object[] objArgs4 = { dias };
+                    SqlConnector.tablaArgs("RegresaAgendaHoy", strArgs4, objArgs4, 2);
+                    //showAlls.viewAutodiagnostico("RegresaAgendaHoy(" + dias.ToString() + ")");
+                    break;
+                
+            }
         }
 
         public static void showUpdate()
