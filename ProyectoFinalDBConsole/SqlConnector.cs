@@ -62,7 +62,12 @@ namespace ProyectoFinalDBConsole
              
             for (int i = 0; i < args.Length; i++)
             {
-                if (i == 0)
+                Console.Write(i);
+                if (i == 0 && i == (args.Length - 1))
+                {
+                    query += "(@" + args[i] + ")";
+                }
+                else if (i == 0)
                 {
                     query += "(@" + args[i] + ", ";
                 }
@@ -78,6 +83,7 @@ namespace ProyectoFinalDBConsole
                     }
                 }
             }
+            Console.WriteLine(query);
             SqlCommand cmd = new SqlCommand(query, conn);
             // cmd.CommandType=CommandType.StoredProcedure;  
 
@@ -86,7 +92,7 @@ namespace ProyectoFinalDBConsole
                 cmd.Parameters.AddWithValue("@"+args[i], argsValue[i]);
             }
 
-
+            Console.WriteLine(query);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);

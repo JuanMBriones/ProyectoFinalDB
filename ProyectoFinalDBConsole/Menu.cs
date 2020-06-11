@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ProyectoFinalDBConsole
@@ -37,37 +38,43 @@ namespace ProyectoFinalDBConsole
                     Environment.Exit(0);
                     break;
                 case 1:
-                    showAlls.viewAutodiagnostico("view_autodiagnostico");
+                    SqlConnector.tablaArgs("view_autodiagnostico", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
                     break;
                 case 2:
-                    showAlls.viewAutodiagnostico("view_maestros");
+                    SqlConnector.tablaArgs("view_maestros", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
                     break;
                 case 3:
-                    showAlls.viewAutodiagnostico("view_meetingsComingUp");
+                    SqlConnector.tablaArgs("view_meetingsComingUp", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
                     break;
                 case 4:
-                    showAlls.viewAutodiagnostico("view_meetingsDatesAndNames");
+                    SqlConnector.tablaArgs("view_meetingsDatesAndNames", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
                     break;
                 case 5:
-                    showAlls.viewAutodiagnostico("view_meetingsDatesAndNamesUpComing");
+                    SqlConnector.tablaArgs("view_meetingsDatesAndNamesUpComing", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+                   
                     break;
                 case 6:
-                    showAlls.viewAutodiagnostico("view_meetingsPassed");            
+                    SqlConnector.tablaArgs("view_meetingsPassed", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+                                
                     break;
                 case 7:
-                    showAlls.viewAutodiagnostico("view_nextMeetingWithAverage");
+                    SqlConnector.tablaArgs("view_nextMeetingWithAverage", Enumerable.Empty<string>().ToArray(), Enumerable.Empty<Object>().ToArray());
+                    
                     break;
                 case 8:
                     Console.Write("Write the ID: ");
                     int nomina = Convert.ToInt32(Console.ReadLine());
-                    showAlls.viewAutodiagnostico("fnTeachersAgendaAndInfo("+nomina.ToString()+")");
+                    String[] strArgs = { "@nomina" };
+                    Object[] objArgs = { nomina };
+                    SqlConnector.tablaArgs("fnTeachersAgendaAndInfo", strArgs, objArgs);
+                    
                     break;
                 case 9:
                     float avg = float.Parse(Console.ReadLine());
-                    showAlls.viewAutodiagnostico("fnTeachersWithAVGLowerThan("+avg+")");
+                    
                     break;
                 case 10:
-                    showAlls.viewAutodiagnostico("fnTeachersWithNoMeetings");
+                    
                     break;
             }
         }
@@ -111,14 +118,14 @@ namespace ProyectoFinalDBConsole
                     float rango1 = float.Parse(Console.ReadLine());
                     Console.Write("Rango2: ");
                     float rango2 = float.Parse(Console.ReadLine());
-                    showAlls.viewAutodiagnostico("RegresaR("+rango1+","+rango2+")");
+                   // showAlls.viewAutodiagnostico("RegresaR("+rango1+","+rango2+")");
                     break;
                 case 2:
                     Console.Write("nombre: ");
                     nombre = Console.ReadLine();
                     Console.Write("apellido: ");
                     apellido = Console.ReadLine();
-                    showAlls.viewAutodiagnostico("RegresaN(" + nombre + "," + apellido + ")");
+                    //showAlls.viewAutodiagnostico("RegresaN(" + nombre + "," + apellido + ")");
                     break;
                 case 3:
                     Console.Write("nombre: ");
@@ -127,12 +134,12 @@ namespace ProyectoFinalDBConsole
                     apellido = Console.ReadLine();
                     Console.Write("Fecha: ");
                     inputtedDate = DateTime.Parse(Console.ReadLine());
-                    showAlls.viewAutodiagnostico("RegresaN(\'" + nombre + "\',\'" + apellido + "\',\'" + inputtedDate + "\')");
+                    //showAlls.viewAutodiagnostico("RegresaN(\'" + nombre + "\',\'" + apellido + "\',\'" + inputtedDate + "\')");
                     break;
                 case 4:
                     Console.Write("Dias: ");
                     int dias = Convert.ToInt32(Console.ReadLine());
-                    showAlls.viewAutodiagnostico("RegresaAgendaHoy(" + dias.ToString() + ")");
+                    //showAlls.viewAutodiagnostico("RegresaAgendaHoy(" + dias.ToString() + ")");
                     break;
                 case 5:
                     Console.Write("Fecha1: ");
@@ -140,7 +147,7 @@ namespace ProyectoFinalDBConsole
                     Console.Write("Fecha2: ");
                     DateTime fecha2 = DateTime.Parse(Console.ReadLine());
 
-                    showAlls.viewAutodiagnostico("Reporte(" + fecha1 + "," + fecha2 +")");
+                    //showAlls.viewAutodiagnostico("Reporte(" + fecha1 + "," + fecha2 +")");
                     
                     break;
                 case 6:
@@ -150,7 +157,7 @@ namespace ProyectoFinalDBConsole
                     apellido = Console.ReadLine();
                     Console.Write("Fecha: ");
                     inputtedDate = DateTime.Parse(Console.ReadLine());
-                    showAlls.viewAutodiagnostico("RegresaN(" + nombre + "," + apellido + "," + inputtedDate + ")");
+                    //showAlls.viewAutodiagnostico("RegresaN(" + nombre + "," + apellido + "," + inputtedDate + ")");
                     break;
             }
         }
