@@ -37,34 +37,37 @@ namespace ProyectoFinalDBConsole
                     Environment.Exit(0);
                     break;
                 case 1:
-                    showViews();
+                    showAlls.viewAutodiagnostico("view_autodiagnostico");
                     break;
                 case 2:
-                    showSp();
+                    showAlls.viewAutodiagnostico("view_maestros");
                     break;
                 case 3:
-                    showCreate();
+                    showAlls.viewAutodiagnostico("view_meetingsComingUp");
                     break;
                 case 4:
-                    showUpdate();
+                    showAlls.viewAutodiagnostico("view_meetingsDatesAndNames");
                     break;
                 case 5:
-                    showDelete();
+                    showAlls.viewAutodiagnostico("view_meetingsDatesAndNamesUpComing");
                     break;
                 case 6:
-                    showCreate();
+                    showAlls.viewAutodiagnostico("view_meetingsPassed");            
                     break;
                 case 7:
-                    showUpdate();
+                    showAlls.viewAutodiagnostico("view_nextMeetingWithAverage");
                     break;
                 case 8:
-                    showDelete();
+                    Console.Write("Write the ID: ");
+                    int nomina = Convert.ToInt32(Console.ReadLine());
+                    showAlls.viewAutodiagnostico("fnTeachersAgendaAndInfo("+nomina.ToString()+")");
                     break;
                 case 9:
-                    showCreate();
+                    float avg = float.Parse(Console.ReadLine());
+                    showAlls.viewAutodiagnostico("fnTeachersWithAVGLowerThan("+avg+")");
                     break;
                 case 10:
-                    showUpdate();
+                    showAlls.viewAutodiagnostico("fnTeachersWithNoMeetings");
                     break;
             }
         }

@@ -7,6 +7,10 @@ namespace ProyectoFinalDBConsole
 {
     class showAlls
     {
-        
+
+        public static void viewAutodiagnostico(String view)
+        {
+            SqlConnector.instance("SELECT * FROM "+view);
+        }
     }
 }

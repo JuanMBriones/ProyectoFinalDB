@@ -11,10 +11,7 @@ namespace ProyectoFinalDBConsole
         
         static void Main(string[] args)
         {
-            //SqlConnector.conn();
-
-            SqlConnector.instance("SELECT * FROM view_maestros");
-            /*
+            
             Console.WriteLine("Hello. Welcome to your agenda with professors.\nWhen you are sure of the service you desire to achieve press the number before the sentence.");
             Console.WriteLine("1.Show all registers");
             Console.WriteLine("2.Get registers");
@@ -51,7 +48,7 @@ namespace ProyectoFinalDBConsole
                 case 5:
                     Menu.showDelete();
                     break;
-            } */
+            } 
         }
     }
 }
